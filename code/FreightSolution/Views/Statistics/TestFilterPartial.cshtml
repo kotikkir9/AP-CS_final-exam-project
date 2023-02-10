@@ -1,0 +1,77 @@
+@using FreightSolution.Models.Statistics
+
+@model StatisticsModel
+
+<section style="height:70px;">
+    <div id="filter-date-interval" class="filter-optional">
+        <h5 class="card-title mt-2 mb-0">Shipment Date</h5>
+        <div class="d-flex flex-row justify-content-between">
+            <div class="flex-grow-1 form-group mr-2 mt-0">
+                <input name="@nameof(Model.Filter.From)" class="form-control datepicker w-100 mt-0" style="background-color: white" readonly/>
+            </div>
+            <div class="flex-grow-1 form-group mt-0">
+                <input name="@nameof(Model.Filter.To)" class="form-control datepicker w-100 mt-0" style="background-color: white" readonly/>
+            </div>
+        </div>
+    </div>
+
+    <div id="filter-date-year" class="filter-optional" style="display:none;">
+        <h5 class="card-title mt-2 mb-0">Year</h5>
+        <select name="@nameof(Model.Filter.Year)" class="form-control selectpicker" data-style="btn select-with-transition mt-0" data-size="7" data-actions-box="true" asp-items="@(new SelectList(Model.Years, "Key", "Value"))"></select>
+    </div>
+</section>
+
+<h5 class="card-title mt-2 mb-0">Carriers</h5>
+<select name="@nameof(Model.Filter.Carriers)" class="form-control selectpicker" data-style="btn select-with-transition mt-0" data-size="7" multiple data-actions-box="true" asp-items="@(new SelectList(Model.Carriers, "Key", "Value"))"></select>
+
+<h5 class="card-title mt-2 mb-0">Services</h5>
+<select name="@nameof(Model.Filter.Services)" class="form-control selectpicker" data-style="btn select-with-transition mt-0" data-size="7" multiple data-actions-box="true" asp-items="@(new SelectList(Model.Services, "Key", "Value"))"></select>
+
+<h5 class="card-title mt-2 mb-0">Products</h5>
+<select name="@nameof(Model.Filter.Products)" class="form-control selectpicker" data-style="btn select-with-transition mt-0" data-size="7" multiple data-actions-box="true" asp-items="@(new SelectList(Model.Products, "Key", "Value"))"></select>
+
+<h5 class="card-title mt-2 mb-0">Sender Countries</h5>
+<select name="@nameof(Model.Filter.SenderCountries)" class="form-control selectpicker" asp-items="@(new SelectList(Model.SenderCountries, "Key", "Value"))" data-live-search="@(Model.SenderCountries.Count() > 5 ? "true" : "false")" data-live-search-normalize="true" data-live-search-placeholder="Type to search..." data-style="btn select-with-transition mt-0" data-size="7" multiple data-actions-box="true"></select>
+
+<h5 class="card-title mt-2 mb-0">Receiver Countries</h5>
+<select name="@nameof(Model.Filter.ReceiverCountries)" class="form-control selectpicker" asp-items="@(new SelectList(Model.ReceiverCountries, "Key", "Value"))" data-live-search="@(Model.ReceiverCountries.Count() > 5 ? "true" : "false")" data-live-search-normalize="true" data-live-search-placeholder="Type to search..." data-style="btn select-with-transition mt-0" data-size="7" multiple data-actions-box="true"></select>
+
+<h5 class="card-title mt-2 mb-0">Shipment Indicators</h5>
+<select name="@nameof(Model.Filter.ShipmentIndicators)" class="form-control selectpicker" data-style="btn select-with-transition mt-0" data-size="7" multiple data-actions-box="true" asp-items="@(new SelectList(Model.ShipmentIndicators, "Key", "Value"))"></select>
+
+<section id="filter-interval-options" class="filter-optional mt-2" style="display:none;">
+    <h5 class="card-title mt-2 mb-0">Interval Size</h5>
+    <select id="filter-interval-size" name="@nameof(Model.Filter.IntervalSize)" class="form-control selectpicker" data-style="btn select-with-transition mt-0" data-size="7" data-actions-box="true"></select>
+    
+    <h5 class="card-title mt-2 mb-1">Min | Max</h5>
+    <div class="d-flex w-100" style="gap: 10px;">
+        <input id="filter-interval-min" name="@nameof(Model.Filter.Min)" type="number" min="0" step="1" class="form-control filter-input" data-style="mt-0" data-size="7"/>
+        <input id="filter-interval-max" name="@nameof(Model.Filter.Max)" type="number" min="0" step="1" class="form-control filter-input"/>
+    </div>
+
+    <div class="w-100 d-flex justify-content-between align-items-center mt-3">
+        <label for="@nameof(Model.Filter.IncludeZero)" class="font-weight-bold text-nowrap">Empty Values</label>
+        <div class="togglebutton" style="margin-right: -10px;">
+            <label>
+                <input id="@nameof(Model.Filter.IncludeZero)" type="checkbox" name="@nameof(Model.Filter.IncludeZero)">
+                <span class="toggle"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="w-100 d-flex justify-content-between align-items-center mt-2">
+        <label for="@nameof(Model.Filter.IncludeRemaining)" class="font-weight-bold text-nowrap">Remaining Values</label>
+        <div class="togglebutton" style="margin-right: -10px;">
+            <label>
+                <input id="@nameof(Model.Filter.IncludeRemaining)" type="checkbox" name="@nameof(Model.Filter.IncludeRemaining)">
+                <span class="toggle"></span>
+            </label>
+        </div>
+    </div>
+</section>
+
+<button id="reset-filters-button" class="btn btn-secondary btn-block mt-4">Deselect All</button>
+
+<div class="mt-3 w-100 d-flex justify-content-end">
+    <button id="apply-filters-button" class="btn btn-primary disabled">Apply Changes</button>
+</div>

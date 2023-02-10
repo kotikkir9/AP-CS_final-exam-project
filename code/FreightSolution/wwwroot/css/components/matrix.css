@@ -1,0 +1,168 @@
+.matrix-container {
+    position: relative;
+}
+
+.matrix-container table {
+    max-width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.matrix-container td,
+.matrix-container th {
+    line-height: 1.5em;
+    min-width: 8em;
+    max-width: 8em;
+    padding: 0.3125em;
+    text-align: center;
+    height: 3.2em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.matrix-container td {
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+    width: 100%;
+    overflow-x: scroll;
+    background-color: rgb(245, 245, 245);
+}
+
+.header-container::-webkit-scrollbar {
+    height: 10px;
+}
+
+.header-container::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 100px;
+}
+
+.header-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.header-container tr th {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.body-container {
+    width: 100%;
+    overflow-x: auto;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    min-height: 500px;
+}
+
+.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 300;
+}
+
+.header-container thead tr th:nth-child(1),
+.body-container tbody tr td:nth-child(1) {
+    position: sticky;
+    left: 0;
+    min-width: max-content;
+    white-space: nowrap;
+    padding: 5px 10px;
+    font-weight: bold;
+    text-align: left;
+    background-color: rgb(245, 245, 245);
+    border-right: 1px solid rgba(0, 0, 0, 0.3);
+    z-index: 200;
+}
+
+.header-container thead tr th:last-child {
+    border-right: none;
+}
+
+.clickable {
+    background: lightgoldenrodyellow;
+}
+
+.clickable:hover {
+    cursor: pointer;
+    /*font-weight: bold;*/
+    filter: brightness(0.95);
+}
+
+/* --------------------------------- Modal --------------------------------- */
+
+.backdrop {
+    z-index: 1000;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    border-radius: 5px;
+    box-shadow: inset 0 0 20px 5px rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    justify-content: center;
+}
+
+.matrix-modal {
+    z-index: 1500;
+    position: sticky;
+    top: 50%;
+    min-width: 350px;
+    transform: translateY(-50%);
+
+    height: fit-content;
+    min-height: 100px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.2s;
+}
+
+.matrix-modal-header {
+    box-shadow: none !important;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.matrix-modal-header p {
+    font-size: 1rem;
+    margin: 0 !important;
+}
+
+.matrix-modal-header p:first-child {
+    margin-right: 20px !important;
+}
+
+.matrix-modal-body-container {
+    padding: 1rem;
+}
+
+.matrix-modal-body-element {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    padding-bottom: 1px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.matrix-modal-body-element p {
+    margin: 0 !important;
+    display: inline;
+}
+
+.matrix-modal-shipments {
+    margin-bottom: 1.5rem;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100;
+    }
+}
